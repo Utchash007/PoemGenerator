@@ -195,28 +195,32 @@ POST /upload
 
 **Example using curl:**
 ```bash
-curl -X POST "http://localhost:8000/upload" \
-  -F "file=@document.pdf" \
-  -F "topic=Nature" \
-  -F "lines=8"
+curl -X 'POST' \
+  'http://127.0.0.1:8000/upload' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@Resume-Shariar-Hasan.pdf;type=application/pdf' \
+  -F 'topic=Create a modern poem' \
+  -F 'lines=2'
 ```
 
 **Response:**
 ```json
 {
-  "topic": "Nature",
+  "topic": "Create a modern poem",
   "lines": [
-    "In forests deep where ancient oaks stand tall",
-    "Their wisdom whispers through the ages past",
-    "The morning dew adorns each leaf and stem",
-    "As sunlight breaks through clouds at last"
+    "Silken threads of code weave his tale,",
+    "Intricate narratives of data unfold,"
   ],
-  "by_agent": ["A", "B", "A", "B"],
+  "by_agent": [
+    "A",
+    "B"
+  ],
   "judge": {
-    "score_A": 12,
-    "score_B": 11,
-    "winner": "A",
-    "notes": "Both agents maintained context grounding and poetic quality..."
+    "score_A": 0,
+    "score_B": 0,
+    "winner": "tie",
+    "notes": "no output"
   }
 }
 ```
